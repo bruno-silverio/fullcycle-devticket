@@ -13,7 +13,7 @@
 - API Gateway
 
 #
-<img src="https://github.com/bruno-silverio/fullcycle-devticket-pro/assets/27282770/6c8e85fe-81d8-47eb-b83e-9863f6daa1ce" />
+<img src="https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/7a5e8ef0-f6dc-418d-a248-e065abe55416" />
     
 <div align="center">
   
@@ -21,11 +21,11 @@
   
   ### Arquitetura geral do sistema
   
-  <img src="https://github.com/bruno-silverio/fullcycle-devticket-pro/assets/27282770/df2d1bca-7e14-44f2-b7ec-8d540bc1c4ab" />
+  <img src="https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/4b207083-c252-4c02-9637-8fd380e8b18f" />
   
   ### Operação principal - Reservar ingresso
   
-  <img src="https://github.com/bruno-silverio/fullcycle-devticket-pro/assets/27282770/539766e6-3b3f-4ede-8cce-280fa9228e6a" />
+  <img src="https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/804de197-07be-4d1d-82ec-e5f2161e6d9c" />
 
 </div>
 
@@ -45,6 +45,6 @@
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=next,nest,go,docker" >
-    <img src="https://github.com/bruno-silverio/fullcycle-devticket-pro/assets/27282770/8958b91e-79a8-43fd-85d7-75bbc9d30a79"  width="55" height="55"/>
+    <img src="https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/5d8c1da1-379a-4673-aea1-67c9040c4900"  width="55" height="55"/>
   </a>
 </p>
