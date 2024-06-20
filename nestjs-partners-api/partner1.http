@@ -1,32 +1,33 @@
 GET http://localhost:3000/events
 
 ###
-GET http://localhost:3000/events/{{ eventId }}
-
-###
 # @name createEvent
 POST http://localhost:3000/events
 Content-Type: application/json
 
 {
-  "name": "New event 1",
-  "description": "This is a new event 1",
-  "date": "2018-01-01T00:00:00",
-  "price": 10
+    "name": "New Event",
+    "description": "This is a new event",
+    "date": "2017-01-01T00:00:00",
+    "price": 100
 }
 
 ###
+
 @eventId = {{ createEvent.response.body.id }}
+
+###
+GET http://localhost:3000/events/{{ eventId }}
 
 ###
 PATCH http://localhost:3000/events/{{ eventId }}
 Content-Type: application/json
 
 {
-  "name": "New event 2",
-  "description": "This is a new event 2",
-  "date": "2017-01-01T00:00:00",
-  "price": 100
+    "name": "New Event",
+    "description": "This is a new event",
+    "date": "2017-01-01T00:00:00",
+    "price": 100
 }
 
 ###
@@ -50,9 +51,10 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/events/{{eventId}}/reserve
 Content-Type: application/json
+X-Api-Token: 1234
 
 {
   "spots": ["{{ spotName }}"],
   "ticket_kind": "full",
-  "email": "test@mail.com"
+  "email": "test@test.com"
 }
