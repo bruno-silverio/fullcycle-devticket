@@ -30,8 +30,8 @@
 </div>
 
 ## Ordem do desenvolvimento
-- [ ] API de Parceiros - Nest.js
-- [ ] API Gateway - Kong
+- [x] API de Parceiros - Nest.js
+- [x] API Gateway - Kong
 - [ ] Sistema de gerenciamento de integremos - Golang
 - [ ] Frontend - Next.js
 - [ ] Integração de todos os sistemas
