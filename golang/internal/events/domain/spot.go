@@ -62,3 +62,13 @@ func (s *Spot) Validate() error {
 	}
 	return nil
 }
+
+// Reserve reserves the spot for the given ticket ID.
+func (s *Spot) Reserve(ticketID string) error {
+	if s.Status == SpotStatusSold {
+		return ErrSpotAlreadyReserved
+	}
+	s.Status = SpotStatusSold
+	s.TicketID = ticketID
+	return nil
+}
