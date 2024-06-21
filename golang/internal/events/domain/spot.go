@@ -2,6 +2,8 @@ package domain
 
 import (
 	"errors"
+
+	"github.com/google/uuid"
 )
 
 var (
@@ -27,6 +29,20 @@ type Spot struct {
 	Name 			string
 	Status 		SpotStatus
 	TicketID 	string
+}
+
+// NewSpot creates a new spot with the given parameters.
+func NewSpot(event *Event, name string) (*Spot, error) {
+	spot := &Spot{
+		ID:      uuid.New().String(),
+		EventID: event.ID,
+		Name:    name,
+		Status:  SpotStatusAvailable,
+	}
+	if err := spot.Validate(); err != nil {
+		return nil, err
+	}
+	return spot, nil
 }
 
 // Validate checks if the spot data is valid.
