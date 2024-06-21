@@ -1,7 +1,15 @@
 package domain
 
 import (
+	"errors"
 	"time"
+)
+
+var (
+	ErrEventNameRequired = errors.New("event name is required")
+	ErrEventDateFuture = errors.New("event date must be in the future")
+	ErrEventCapacityZero = errors.New("event capacity must be greater than zero")
+	ErrEventPriceZero = errors.New("event price must be greater than zero")
 )
 
 // Rating represents the age restriction for an event
@@ -16,6 +24,11 @@ const (
 	Rating18    Rating = "L18"
 )
 
+type User struct {
+	ID    string
+	Email string
+}
+
 // Event represents an event with tickets and spots.
 type Event struct {
 	ID           string
@@ -28,4 +41,21 @@ type Event struct {
 	Capacity     int
 	Price        float64
 	PartnerID    int
+}
+
+// Validate checks if the event data is valid.
+func (e *Event) Validate() error {
+	if e.Name == "" {
+		return ErrEventNameRequired
+	}
+	if e.Date.Before(time.Now()) {
+		return ErrEventDateFuture
+	}
+	if e.Capacity <= 0 {
+		return ErrEventCapacityZero
+	}
+	if e.Price <= 0 {
+		return ErrEventPriceZero
+	}
+	return nil
 }
