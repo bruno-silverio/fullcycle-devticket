@@ -35,3 +35,13 @@ func (r *mysqlEventRepository) ReserveSpot(spotID, ticketID string) error {
 	_, err := r.db.Exec(query, domain.SpotStatusSold, ticketID, spotID)
 	return err
 }
+
+// CreateTicket inserts a new ticket into the database.
+func (r *mysqlEventRepository) CreateTicket(ticket *domain.Ticket) error {
+	query := `
+		INSERT INTO tickets (id, event_id, spot_id, ticket_type, price)
+		VALUES (?, ?, ?, ?, ?)
+	`
+	_, err := r.db.Exec(query, ticket.ID, ticket.EventID, ticket.Spot.ID, ticket.TicketType, ticket.Price)
+	return err
+}
