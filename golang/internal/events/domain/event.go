@@ -6,6 +6,7 @@ import (
 )
 
 var (
+	ErrEventNotFound = errors.New("event not found")
 	ErrEventNameRequired = errors.New("event name is required")
 	ErrEventDateFuture = errors.New("event date must be in the future")
 	ErrEventCapacityZero = errors.New("event capacity must be greater than zero")
