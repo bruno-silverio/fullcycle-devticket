@@ -25,6 +25,6 @@ type EventDTO struct {
 type TicketDTO struct {
 	ID         string  `json:"id"`
 	SpotID     string  `json:"spot_id"`
-	TicketType string  `json:"ticket_type"`
+	TicketKind string  `json:"ticket_kind"`
 	Price      float64 `json:"price"`
 }

@@ -8,7 +8,7 @@ import (
 type BuyTicketsInputDTO struct {
 	EventID    string   `json:"event_id"`
 	Spots      []string `json:"spots"`
-	TicketType string   `json:"ticket_type"`
+	TicketKind string   `json:"ticket_kind"`
 	CardHash   string   `json:"card_hash"`
 	Email      string   `json:"email"`
 }
@@ -40,7 +40,7 @@ func (uc *BuyTicketsUseCase) Execute(input BuyTicketsInputDTO) (*BuyTicketsOutpu
 	req := &service.ReservationRequest{
 		EventID:    input.EventID,
 		Spots:      input.Spots,
-		TicketType: input.TicketType,
+		TicketKind: input.TicketKind,
 		CardHash:   input.CardHash,
 		Email:      input.Email,
 	}
@@ -65,7 +65,7 @@ func (uc *BuyTicketsUseCase) Execute(input BuyTicketsInputDTO) (*BuyTicketsOutpu
 			return nil, err
 		}
 
-		ticket, err := domain.NewTicket(event, spot, domain.TicketType(input.TicketType))
+		ticket, err := domain.NewTicket(event, spot, domain.TicketKind(input.TicketKind))
 		if err != nil {
 			return nil, err
 		}
@@ -89,7 +89,7 @@ func (uc *BuyTicketsUseCase) Execute(input BuyTicketsInputDTO) (*BuyTicketsOutpu
 		ticketDTOs[i] = TicketDTO{
 			ID:         ticket.ID,
 			SpotID:     ticket.Spot.ID,
-			TicketType: string(ticket.TicketType),
+			TicketKind: string(ticket.TicketKind),
 			Price:      ticket.Price,
 		}
 	}
