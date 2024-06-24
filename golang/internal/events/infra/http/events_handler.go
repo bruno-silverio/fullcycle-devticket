@@ -106,3 +106,31 @@ func (h *EventsHandler) ListSpots(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(output)
 }
+
+// BuyTickets handles the request to buy tickets for an event.
+// @Summary Buy tickets for an event
+// @Description Buy tickets for a specific event
+// @Tags Events
+// @Accept json
+// @Produce json
+// @Param input body usecase.BuyTicketsInputDTO true "Input data"
+// @Success 200 {object} usecase.BuyTicketsOutputDTO
+// @Failure 400 {object} string
+// @Failure 500 {object} string
+// @Router /checkout [post]
+func (h *EventsHandler) BuyTickets(w http.ResponseWriter, r *http.Request) {
+	var input usecase.BuyTicketsInputDTO
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	output, err := h.buyTicketsUseCase.Execute(input)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(output)
+}
