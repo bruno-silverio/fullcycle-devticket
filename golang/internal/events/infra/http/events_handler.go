@@ -81,3 +81,28 @@ func (h *EventsHandler) GetEvent(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(output)
 }
+
+// ListSpots lists spots for an event.
+// @Summary List spots for an event
+// @Description List all spots for a specific event
+// @Tags Events
+// @Accept json
+// @Produce json
+// @Param eventID path string true "Event ID"
+// @Success 200 {object} usecase.ListSpotsOutputDTO
+// @Failure 400 {object} string
+// @Failure 500 {object} string
+// @Router /events/{eventID}/spots [get]
+func (h *EventsHandler) ListSpots(w http.ResponseWriter, r *http.Request) {
+	eventID := r.PathValue("eventID")
+	input := usecase.ListSpotsInputDTO{EventID: eventID}
+
+	output, err := h.listSpotsUseCase.Execute(input)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(output)
+}
