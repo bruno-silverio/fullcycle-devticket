@@ -32,9 +32,9 @@
 ## Ordem do desenvolvimento
 - [x] API de Parceiros - Nest.js
 - [x] API Gateway - Kong
-- [ ] Sistema de gerenciamento de integremos - Golang
-- [ ] Frontend - Next.js
-- [ ] Integração de todos os sistemas
+- [x] Sistema de gerenciamento de integremos - Golang
+- [x] Frontend - Next.js
+- [x] Integração de todos os sistemas
 
 ## Autores
 
