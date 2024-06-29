@@ -26,7 +26,7 @@ const (
 type Spot struct {
 	ID 				string
 	EventID 	string
-	Name 			string
+	Name 			string // all name uses the rule: Letter+Number. Ex: A1, B2, C3, etc.
 	Status 		SpotStatus
 	TicketID 	string
 }

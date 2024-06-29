@@ -13,8 +13,8 @@ type EventsHandler struct {
 	listSpotsUseCase   *usecase.ListSpotsUseCase
 	getEventUseCase    *usecase.GetEventUseCase
 	buyTicketsUseCase  *usecase.BuyTicketsUseCase
-	//createEventUseCase *usecase.CreateEventUseCase
-	//createSpotsUseCase *usecase.CreateSpotsUseCase
+	createEventUseCase *usecase.CreateEventUseCase
+	createSpotsUseCase *usecase.CreateSpotsUseCase
 }
 
 // NewEventsHandler creates a new EventsHandler.
@@ -23,16 +23,16 @@ func NewEventsHandler(
 	listSpotsUseCase *usecase.ListSpotsUseCase,
 	getEventUseCase *usecase.GetEventUseCase,
 	buyTicketsUseCase *usecase.BuyTicketsUseCase,
-	//createEventUseCase *usecase.CreateEventUseCase,
-	//createSpotsUseCase *usecase.CreateSpotsUseCase,
+	createEventUseCase *usecase.CreateEventUseCase,
+	createSpotsUseCase *usecase.CreateSpotsUseCase,
 ) *EventsHandler {
 	return &EventsHandler{
 		listEventsUseCase:  listEventsUseCase,
 		listSpotsUseCase:   listSpotsUseCase,
 		getEventUseCase:    getEventUseCase,
 		buyTicketsUseCase:  buyTicketsUseCase,
-		//createEventUseCase: createEventUseCase,
-		//createSpotsUseCase: createSpotsUseCase,
+		createEventUseCase: createEventUseCase,
+		createSpotsUseCase: createSpotsUseCase,
 	}
 }
 
@@ -134,3 +134,81 @@ func (h *EventsHandler) BuyTickets(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(output)
 }
+
+// CreateEvent handles the request to create a new event.
+// @Summary Create a new event
+// @Description Create a new event with the given details
+// @Tags Events
+// @Accept json
+// @Produce json
+// @Param input body usecase.CreateEventInputDTO true "Input data"
+// @Success 201 {object} usecase.CreateEventOutputDTO
+// @Failure 400 {object} string
+// @Failure 500 {object} string
+// @Router /events [post]
+func (h *EventsHandler) CreateEvent(w http.ResponseWriter, r *http.Request) {
+	var input usecase.CreateEventInputDTO
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	output, err := h.createEventUseCase.Execute(input)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(output)
+}
+
+// CreateSpots handles the creation of spots.
+// @Summary Create spots for an event
+// @Description Create a specified number of spots for an event
+// @Tags Events
+// @Accept json
+// @Produce json
+// @Param eventID path string true "Event ID"
+// @Param input body CreateSpotsRequest true "Input data"
+// @Success 201 {object} usecase.CreateSpotsOutputDTO
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /events/{eventID}/spots [post]
+func (h *EventsHandler) CreateSpots(w http.ResponseWriter, r *http.Request) {
+	eventID := r.PathValue("eventID")
+	var input usecase.CreateSpotsInputDTO
+	if err := json.NewDecoder(r.Body).Decode(&input); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	input.EventID = eventID
+
+	output, err := h.createSpotsUseCase.Execute(input)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(output)
+}
+
+// writeErrorResponse writes an error response in JSON format
+func (h *EventsHandler) writeErrorResponse(w http.ResponseWriter, message string, statusCode int) {
+	w.WriteHeader(statusCode)
+	json.NewEncoder(w).Encode(ErrorResponse{Message: message})
+}
+
+// ErrorResponse represents the structure of an error response
+type ErrorResponse struct {
+	Message string `json:"message"`
+}
+
+// CreateSpotsRequest represents the input for creating spots.
+type CreateSpotsRequest struct {
+	NumberOfSpots int `json:"number_of_spots"`
+}
+

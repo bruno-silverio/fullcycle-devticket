@@ -51,8 +51,8 @@ func main() {
 	listSpotsUseCase := usecase.NewListSpotsUseCase(eventRepo)
 	getEventUseCase := usecase.NewGetEventUseCase(eventRepo)
 	buyTicketsUseCase := usecase.NewBuyTicketsUseCase(eventRepo, partnerFactory)
-	//createEventUseCase := usecase.NewCreateEventUseCase(eventRepo)
-	//createSpotsUseCase := usecase.NewCreateSpotsUseCase(eventRepo)
+	createEventUseCase := usecase.NewCreateEventUseCase(eventRepo)
+	createSpotsUseCase := usecase.NewCreateSpotsUseCase(eventRepo)
 
 	// Handlers HTTP
 	eventsHandler := httpHandler.NewEventsHandler(
@@ -60,8 +60,8 @@ func main() {
 		listSpotsUseCase,
 		getEventUseCase,
 		buyTicketsUseCase,
-		//createEventUseCase,
-		//createSpotsUseCase,
+		createEventUseCase,
+		createSpotsUseCase,
 	)
 
 	r := http.NewServeMux()
@@ -70,8 +70,8 @@ func main() {
 	r.HandleFunc("/events/{eventID}", eventsHandler.GetEvent)
 	r.HandleFunc("/events/{eventID}/spots", eventsHandler.ListSpots)
 	r.HandleFunc("POST /checkout", eventsHandler.BuyTickets)
-	//r.HandleFunc("POST /events", eventsHandler.CreateEvent)
-	//r.HandleFunc("POST /events/{eventID}/spots", eventsHandler.CreateSpots)
+	r.HandleFunc("POST /events", eventsHandler.CreateEvent)
+	r.HandleFunc("POST /events/{eventID}/spots", eventsHandler.CreateSpots)
 
 	server := &http.Server{
 		Addr:    ":8080",
