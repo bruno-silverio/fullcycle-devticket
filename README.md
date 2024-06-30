@@ -29,6 +29,68 @@
 
 </div>
 
+## 🚦 How to use the project (instructions)
+
+How to run (Open 4 terminals for better viewing)
+
+#### Docker
+./fullcycle-devticket >
+```bash 
+docker compose up
+```
+#### Golang
+./fullcycle-devticket >
+```bash 
+docker compose exec golang sh
+```
+/app
+```bash
+go run cmd/events/main.go
+```
+#### Partner1
+./fullcycle-devticket >
+```bash 
+docker compose exec nestjs bash
+```
+~/app$
+```bash 
+npm install
+```
+```bash
+npm run migrate:partner1
+```
+```bash
+npm run migrate:partner2
+```
+```bash
+npm run start partner1-fixture
+```
+```bash
+npm run start partner2-fixture
+```
+```bash
+npm run start:dev
+```
+#### Partner2
+./fullcycle-devticket >
+```bash 
+docker compose exec nestjs bash
+```
+~/app$
+```bash
+npm run start:dev partner2
+```
+#### Nextjs
+./fullcycle-devticket >
+```bash 
+docker compose exec nextjs bash
+```
+~/app$
+```bash
+npm run dev
+```
+Após iniciar as aplicações frontend e backend, basta acessar 'localhost' na porta [8000/nextjs](http://localhost:8000/nextjs) para ser direcionado à aplicação Next.js e realizar os devidos testes.
+
 ## Ordem do desenvolvimento
 - [x] API de Parceiros - Nest.js
 - [x] API Gateway - Kong
