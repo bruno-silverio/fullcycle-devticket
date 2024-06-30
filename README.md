@@ -31,14 +31,17 @@
 
 ## 🚦 How to use the project (instructions)
 
-How to run (Open 4 terminals for better viewing)
+How to run (Open 5 terminals for better viewing)
 
-#### Docker
+#### 1. Docker
+Estamos utilizando uma opção nova do `Docker: include`, com ela ao rodarmos: `docker compose up` na raiz do repositório todos os `docker-compose.yaml` das pastas subsequentes serão rodados, ficando apenas para que você entre em cada container para instalar as depêndencias rodar os comandos de inicialização da aplicação. 
+
+
 ./fullcycle-devticket >
 ```bash 
 docker compose up
 ```
-#### Golang
+#### 2. Golang
 ./fullcycle-devticket >
 ```bash 
 docker compose exec golang sh
@@ -47,7 +50,7 @@ docker compose exec golang sh
 ```bash
 go run cmd/events/main.go
 ```
-#### Partner1
+#### 3. Partner1
 ./fullcycle-devticket >
 ```bash 
 docker compose exec nestjs bash
@@ -71,7 +74,7 @@ npm run start partner2-fixture
 ```bash
 npm run start:dev
 ```
-#### Partner2
+#### 4. Partner2
 ./fullcycle-devticket >
 ```bash 
 docker compose exec nestjs bash
@@ -80,12 +83,15 @@ docker compose exec nestjs bash
 ```bash
 npm run start:dev partner2
 ```
-#### Nextjs
+#### 5. Nextjs
 ./fullcycle-devticket >
 ```bash 
 docker compose exec nextjs bash
 ```
 ~/app$
+```bash
+npm install
+```
 ```bash
 npm run dev
 ```
