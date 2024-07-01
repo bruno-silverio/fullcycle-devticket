@@ -103,7 +103,7 @@ Após iniciar as aplicações frontend e backend, basta acessar 'localhost' na p
 ## Ordem do desenvolvimento
 - [x] API de Parceiros - Nest.js
 - [x] API Gateway - Kong
-- [x] Sistema de gerenciamento de integremos - Golang
+- [x] Sistema de gerenciamento de ingressos - Golang
 - [x] Frontend - Next.js
 - [x] Integração de todos os sistemas
 
