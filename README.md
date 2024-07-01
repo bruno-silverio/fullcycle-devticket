@@ -48,6 +48,9 @@ docker compose exec golang sh
 ```
 /app
 ```bash
+go mod tidy
+```
+```bash
 go run cmd/events/main.go
 ```
 #### 3. Partner1
