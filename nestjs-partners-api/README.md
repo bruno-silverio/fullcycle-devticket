@@ -1,11 +1,19 @@
 <div align="center">
   
-  ## Microsserviços de parceiros de ingressos com Nest.js
+  ## Microsserviços de Parceiros de ingressos com Nest.js
   
 </div>
 
 ### Descrição
 Repositório da API feita com Nest.js (Reserva de Ingressos)
+
+### Design do projeto
+<div align="center">
+
+  ![image](https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/78135602-4e7f-47b7-b834-23c18b0ecdb0)
+  
+</div>
+
 
 ### Tecnologias utilizadas
 
