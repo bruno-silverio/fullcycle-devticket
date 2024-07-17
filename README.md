@@ -13,10 +13,8 @@
 - API Gateway
 
 <div align="center">
-  
-  ![devTicket](https://github.com/user-attachments/assets/a1664818-14a9-45f8-873f-de6f3c423378)
-  ![fotoDevTicket](https://github.com/user-attachments/assets/a2705135-5b6d-408e-81b6-bdac332b9842)
-
+  <img src="https://github.com/user-attachments/assets/a1664818-14a9-45f8-873f-de6f3c423378" width="413" height="324">
+  <img src="https://github.com/user-attachments/assets/a2705135-5b6d-408e-81b6-bdac332b9842" width="401" height="369">
 </div>
 
 #
