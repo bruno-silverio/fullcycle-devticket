@@ -12,6 +12,13 @@
 - Frontend
 - API Gateway
 
+<div align="center">
+  
+  ![devTicket](https://github.com/user-attachments/assets/a1664818-14a9-45f8-873f-de6f3c423378)
+  ![fotoDevTicket](https://github.com/user-attachments/assets/a2705135-5b6d-408e-81b6-bdac332b9842)
+
+</div>
+
 #
 <img src="https://github.com/bruno-silverio/fullcycle-devticket/assets/27282770/7a5e8ef0-f6dc-418d-a248-e065abe55416" />
     
